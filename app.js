@@ -22,6 +22,7 @@ app.set('views',path.join(__dirname,'views'));
 app.use(express.static(path.join(__dirname,'public')));
 const mongoSanitize = require('express-mongo-sanitize');
 const mongoose = require('mongoose');
+
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
 mongoose.connect(dbUrl , {useNewUrlParser : true , useUnifiedTopology : true});
 const db = mongoose.connection;
@@ -74,9 +75,9 @@ const reviewRouter = require('./routes/reviews');
 app.use('/camp/:id/review',reviewRouter);
 const userRouter = require('./routes/users');
 app.use('/',userRouter);
-
-app.listen('3000',()=>{
-    console.log("Server started at port 3000..!");
+const port = process.env.PORT || 3000;
+app.listen(port,()=>{
+    console.log(`Server started at port ${port}..!`);
 });
 app.get('/',(req,res)=>{
     // console.log(req.method.toUpperCase(),req.path);
