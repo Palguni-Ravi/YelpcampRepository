@@ -1,0 +1,45 @@
+
+<% layout('layout/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">New Campground</h1>
+    <div class="col-md-6 offset-md-3">
+      <div class="card shadow mt-4 mb-4">
+        <div class="card-body">
+        <form action="/camp" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="campground[title]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="campground[location]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                        aria-describedby="price-label" name="campground[price]" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="campground[description]"
+                    required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="Upload">Add images : </label>
+              <div class="input-group form-file custom-file">
+                <input type="file" class="form-control form-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="image" multiple required>
+              </div>
+            </div>
+            <div class=" mt-5 mb-3">
+                <center><button class="btn btn-success">Save Campground</button></center>
+            </div>
+        </form>
+        <center><a href="/camp">All Campgrounds</a></center>
+        </div>
+        </div>
+    </div>
+</div>

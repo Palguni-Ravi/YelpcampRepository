@@ -1,0 +1,54 @@
+<% layout('layout/boilerplate.ejs') %>
+    <div class="row">
+      <h1 class="text-center">Edit Campground</h1>
+      <div class="col-6 offset-3">
+        <div class="card shadow mt-4 mb-4">
+          <div class="card-body">
+        <form class="validated-form" action="/camp/<%= campground._id %>?_method=PUT" method="POST" novalidate enctype="multipart/form-data">
+          <div class="mb-3">
+            <label class="form-label" for="title">Title : </label>
+            <input class="form-control" type="text" id="title" name="campground[title]" value="<%= campground.title %>" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="location">Location : </label>
+            <input class="form-control" type="text" id="location" name="campground[location]" value="<%= campground.location %>" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="price">Price : </label>
+            <div class="input-group">
+              <span class="input-group-text" id="price-label">$</span>
+              <input type="text" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="campground[price]" value="<%= campground.price %>" required>
+            </div>
+          </div>
+         
+          <div class="mb-3">
+            <label class="form-label" for="desc">Description : </label>
+            <textarea class="form-control" type="text" id="desc" name="campground[description]" required><%= campground.description %></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="Upload">Add images : </label>
+            <div class="input-group form-file custom-file">
+              <input type="file" class="form-control form-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="image" multiple>
+            </div>
+          </div>
+          <div class="mb-3">
+            <% campground.images.forEach(function(img,i){ %>
+              <center><img src="<%= img.thumbnail %>" class="img-thumbnail" alt=""></center><br>
+              <center><div class="form-check-inline">
+                <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%= img.filename %>">
+              </div>
+              <label for="image-<%=i%>">Delete?</label></center><br>
+            <% }) %>
+          </div>
+          <div class="mb-3">
+            <center><button class="btn btn-success">Update Campground</button></center>
+          </div>
+          </form>
+        <center><a href="/camp">All Campgrounds</a></center>
+        </div>
+      </div>
+      </div>
+    </div>
+        
+    
+    
